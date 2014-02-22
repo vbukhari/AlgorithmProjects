@@ -1,0 +1,49 @@
+4
+
+6 10
+tA
+tB
+tC
+td
+tE
+tF
+tA 3 - 3 tB
+tC 3 - 4 td
+tE 6 - 2 tA
+tC 1 - 5 tB
+td 2 - 3 tE
+tA 1 - 4 tC
+tB 4 - 5 tE 
+td 0 - 5 tA
+tE 1 - 3 tC 
+tB 7 - 2 td
+ 
+2 2 
+Botafogo 
+Flamengo  
+Botafogo 3 - 2 Flamengo 
+Flamengo 2 - 3 Botafogo 
+
+5 10
+tA 
+tB 
+tC 
+tD 
+tE 
+tA 1 - 2 tB
+tC 5 - 5 tD 
+tE 7 - 4 tA  
+tC 1 - 5 tB 
+tD 0 - 2 tE 
+tA 1 - 4 tC 
+tB 4 - 0 tE 
+tD 1 - 2 tA 
+tE 3 - 3 tC 
+tB 5 - 4 tD
+ 
+3 2
+Quinze-Novembro 
+Flamengo 
+Santo-Andre 
+Quinze-Novembro 6 - 0 Flamengo
+Flamengo 0 - 2 Santo-Andre
