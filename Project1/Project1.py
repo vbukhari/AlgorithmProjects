@@ -9,7 +9,9 @@ def main():
 		nDataSet = 0
 		nTeams = 0
 		nGames = 0
-		teams = []
+		teamsName = []
+		scoreTable = []
+		#teamsDict = {}
 		with open('input2.txt', 'r') as inputFile:
 			nDataSet = int(inputFile.readline())
 			print "Number of DataSets: %d" % nDataSet
@@ -20,21 +22,47 @@ def main():
 				nGames = int(nTeamsNGames[1]) 
 				print "Number of teams: %d" % nTeams
 				print "Number of games: %d" % nGames
+				teamsDict ={}
+				obj = Fixtures(0, 0, 0, 0, 0, 0, 0)
 				for j in range(nTeams):
-					teams.append(inputFile.readline().rstrip().split(' '))
-				print teams
+					#teamsName.append(inputFile.readline().rstrip().split(' '))
+					line = inputFile.readline().rstrip().split(' ')
+					#teamsDict[line[0]] =  [0, 0, 0, 0, 0, 0.0]
+					#obj = Fixtures(teamsDict)
+					teamsDict[line[0]] = obj.__dict__
+					#dict((key, value) for key, value in team1.__dict__.iteritems())
+					#teamsDict[team1.teamName]= team1
+					#teamsDict['name'].append(inputFile.readline().rstrip().split(' '))
+					#print inputFile.readline().strip().split()
+				#print teamsDict
 				for k in range(nGames):
-					pass
-
-				break
-			# for x in range(nDataSet):
-			# 	print(inputFile.readline())
-
-			# for line in inputFile:
-			# 	print line
-		# 		data = [line.rstrip().split(',') for line in inputFile]
-		# nDataSet= int(data[0].strip())
-		# print nDataSet
+					#scoreTable.append(inputFile.readline().strip().split(' '))
+					line = inputFile.readline().strip().split()  
+					homeTeam = line[0]
+					homeGoal = int(line[1])
+					awayGoal = int(line[3])
+					awayTeam = line[4]
+					#print homeTeam, homeGoal, awayTeam, awayGoal
+					#print scoreTable
+					for x, y in teamsDict.iteritems():
+						if x == homeTeam:
+							for k, v in y.iteritems():
+								if k == "numGoals":
+									y[k] += homeGoal
+								#print homeGoal
+						elif x == awayTeam:
+							for k, v in y.iteritems():
+							 	if k == "numGoals":
+							 		y[k] += awayGoal
+							#print homeTeam
+						# if x == awayTeam:
+						# 	for k, v in y.iteritems():
+								#print awayGoal
+							# for k, v in y.items():
+							# 	if k == "numGoals":
+							# 		y[k] = awayGoal
+							#print awayTeam
+				print teamsDict
 	except IOError as e:
 		print "I/O error({0}): {1}".format(e.errno, e.strerror)
 	except ValueError:
@@ -42,52 +70,31 @@ def main():
 	except:
 		print "Unexptected error:", sys.exc_info()[0]
 		raise
-
-	# print data
-	# print len(data)
-	# nDataSet = 0
-	# for x in data:
-	# 	for i in x:
-	# 		print i#x.index(i)
-	# 		#if(i.index(x)==0):
-	# 		#	nDataSet= int(i)
-
-	# for nDataSet in data[0].:
-	# 	pass
-
-	#print nDataSet
-
-	# nDataSet = data[0]
-	# nTeams = data[2:]
-	# print nTeams
-	# for x in data[2]:
-	# 	print x
-	
-
-
-
-	# for x in data:
-	# 	print data
-		# for i in x:
-		#  	print i 
-	#inputFile = open("input2.txt", "r")
-	#lines = inputFile.readlines()
-	# allItems = []
-	# for line in inputFile:
-	# 	data = line.rstrip().split(',')
-	# 	allItems.append(data)
-		# data = data.split(',')
-		# data = data.sort(key=lamda item: item[4]) 
-		# print data
-	#print lines
-	#print len(lines)
 	inputFile.close()
 
-def sortList():
-	pass
+class Fixtures(object):
+	"""docstring for Fixtures"""
+	def __init__(self, teamPosition,numPoints,numGames, numGoals,numSuffGoals,goalDifference,percentPoin):
+		self.teamPosition = teamPosition
+		#self.teamName = teamName
+		self.numPoints = numPoints
+		self.numGames = numGames
+		self.numGoals = numGoals
+		self.numSuffGoals = numSuffGoals
+		self.goalDifference = goalDifference
+		self.percentPoints = percentPoin
+		# for k, v in dictionary.items():
+		# 	setattr(self, k, v)
 
-def readFile():
-	pass
+	#update the number of goals and number of points and lost or win
+	def update(self, dictionary):
+		self.__dict__.update(dictionary)
+	#calculate goal difference
+	def goalDifference(goalScored, goalSuffered):
+		return abs(goalScored - goalSuffered)
+	#print team data
+	def printFixture():
+		pass
 
 if __name__ == '__main__':
 	main()
