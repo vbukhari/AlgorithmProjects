@@ -9,9 +9,7 @@ def main():
 		nDataSet = 0
 		nTeams = 0
 		nGames = 0
-		teamsName = []
-		scoreTable = []
-		#teamsDict = {}
+
 		with open('input2.txt', 'r') as inputFile:
 			nDataSet = int(inputFile.readline())
 			print "Number of DataSets: %d" % nDataSet
@@ -54,14 +52,7 @@ def main():
 							for k, v in y.iteritems():
 							 	if k == "numGoals":
 							 		y[k] += awayGoal
-							#print homeTeam
-						# if x == awayTeam:
-						# 	for k, v in y.iteritems():
-								#print awayGoal
-							# for k, v in y.items():
-							# 	if k == "numGoals":
-							# 		y[k] = awayGoal
-							#print awayTeam
+
 				print teamsDict
 	except IOError as e:
 		print "I/O error({0}): {1}".format(e.errno, e.strerror)
