@@ -5,7 +5,7 @@ import sys
 import os
 
 def main():
-	
+	#catch any exception or error reading or writing file or value eror or any unexpected error
 	try:
 		nDataSet = 0	#Number of data sets
 		nTeams = 0		#Number of Teams
@@ -66,7 +66,7 @@ def main():
 		print "Unexptected error:", sys.exc_info()[0]
 		raise
 	inputFile.close()
-
+#Class fixture for handing all values 
 class Fixtures(object):
 	"""docstring for Fixtures"""
 	def __init__(self, teamPosition, teamName):
@@ -121,9 +121,18 @@ class Fixtures(object):
 			return 1
 		else:
 			return 0
+	#This method check number of points, goal differences and number goals 
+	#tunr out to be same. IF they are this function return True
+	#This method use to set same ranking if conditions come out to be True
 	def checkRanking(x, y):
-		if(x.numPoints == y.numPoints) and (x.goalDifference == y.goalDifference) and (x.numGoals == y.numGoals):
-			return True
+		temp = False
+		if(x.numPoints == y.numPoints):
+			temp = True
+		if(x.goalDifference == y.goalDifference):
+			temp = True
+		if(x.numGoals == y.numGoals):
+			temp = True
+		return temp
 	def __str__(self):
 		return " ".join(map(str,
 		[self.teamName, self.numPoints, self.numGames,
