@@ -51,9 +51,11 @@ def main():
 					outFile.write("%d\n"% nTeams)
 					outFile.write("%d. %s\n" % (num+1, sortedFixture[0]))
 					for x in range(1, nTeams):
-						if not (sortedFixture[x-1].checkRanking(sortedFixture[x])):
+						if(sortedFixture[x-1].checkRanking(sortedFixture[x])):
 							num = x
-						outFile.write("%d. %s\n"% (x+1, sortedFixture[x]))
+							outFile.write("%d. %s\n"% (num, sortedFixture[x]))
+						else:
+							outFile.write("%d. %s\n"% (x+1, sortedFixture[x]))
 					outFile.write('\n')
 
 	except IOError as e:
