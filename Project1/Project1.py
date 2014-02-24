@@ -26,9 +26,9 @@ def main():
 				#iterate over to collect name of teams from input file
 				for j in range(nTeams):
 					#teamsName.append(inputFile.readline().rstrip().split(' '))
-					line = inputFile.readline().rstrip().split(' ')
+					line = inputFile.readline().strip()
 					obj = Fixtures(j, line[0])
-					teamsDict[line[0]] = obj.__dict__
+					teamsDict[line] = obj#.__dict__
 					#dict((key, value) for key, value in team1.__dict__.iteritems())
 					#teamsDict[team1.teamName]= team1
 					#teamsDict['name'].append(inputFile.readline().rstrip().split(' '))
@@ -46,7 +46,12 @@ def main():
 					teamsDict[awayT].updateTeam(awayG, homeG)
 					#obj.__dict__.update(teamsDict)
 
-				print teamsDict
+				sortedFixture = sorted(teamsDict, key=cmp_to_key(num_compare))
+				#sortedFixture = sorted(teamsDict.values(), cmp=Fixtures.cmp_to_key)
+				# for key, value in teamsDict.iteritems():
+				# 	#for x in value:
+				# 	print value
+				
 	except IOError as e:
 		print "I/O error({0}): {1}".format(e.errno, e.strerror)
 	except ValueError:
@@ -74,16 +79,48 @@ class Fixtures(object):
 	#and number of points, num
 	def updateTeam(self, homeG, awayG):
 		#if win game, add 3 points 
-		if (homeG > awayG):	self.numPoints = self.numPoints + 3
+		if (homeG > awayG):	self.numPoints += 3
 		#if draw, add 1 points
-		elif(homeG == awayG): self.numPoints = self.numPoints + 1
+		elif(homeG == awayG): self.numPoints += 1 
 		#if lost, no point added
 		else: pass
-
-		self.numGoals = self.numGoals + homeG			#update number of goals earned
-		self.numSuffGoals = self.numSuffGoals + awayG	#update number of goals suffered
+		#update number of goals earned
+		self.numGoals = self.numGoals + homeG		
+		#update number of goals suffered	
+		self.numSuffGoals = self.numSuffGoals + awayG	
+		#update number of goals difference
+		self.goalDifference = self.numGoals - self.numSuffGoals	
+		#update number of percentPoints
+		if(self.numGames == 0):	self.percentPoints = 100
+		else: self.percentPoints = 100*(self.numPoints/(3*self.numGames))
 
 		#self.__dict__.update(dictionary)
+
+	def num_compare(x, y):
+		return x - y
+
+	def cmp_to_key(mycmp):
+
+		class K(object):
+			"""docstring for K"""
+			def __init__(self, obj, *args):
+				self.obj = obj
+			def __lt__(self, other):
+				return mycmp(self.obj, other.obj) < 0
+	        def __gt__(self, other):
+	            return mycmp(self.obj, other.obj) > 0
+	        def __eq__(self, other):
+	            return mycmp(self.obj, other.obj) == 0
+	        def __le__(self, other):
+	            return mycmp(self.obj, other.obj) <= 0
+	        def __ge__(self, other):
+	            return mycmp(self.obj, other.obj) >= 0
+	        def __ne__(self, other):
+	        	return mycmp(self.obj, other.obj) != 0
+
+	    return K
+				
+
 	#calculate goal difference
 	def goalDifference(goalScored, goalSuffered):
 		return abs(goalScored - goalSuffered)
