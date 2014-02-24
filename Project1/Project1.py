@@ -97,7 +97,8 @@ class Fixtures(object):
 		#update number of percentPoints
 		self.percentPoints = self.findPercentPoint()
 	
-
+	#compare according to specified criteria of classification
+	# Number of Points Scored > Goal difference > Number of Scored Goals > Position in classification
 	def number_compare(x, y):
 		
 		if(x.numPoints > y.numPoints):	
