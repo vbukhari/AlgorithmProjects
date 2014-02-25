@@ -3,6 +3,7 @@
 #
 import sys
 import os
+from operator import itemgetter, attrgetter
 
 def main():
 	#catch any exception or error reading or writing file or value eror or any unexpected error
@@ -45,8 +46,8 @@ def main():
 						teamsDict[awayT].updateFixture(awayG, homeG)
 
 					# print teamsDict
-					sortedFixture = sorted(teamsDict.values(), cmp=Fixtures.number_compare)
-					#sortedFixture = sorted(teamsDict, key=Fixtures.number_compare)
+					#sortedFixture = sorted(teamsDict.values(), cmp=Fixtures.number_compare)
+					sortedFixture = sorted(teamsDict, key=attrgetter('numPoints', 'goalDifference', 'numGoals', 'teamPosition'))
 					num=0
 					outFile.write("%d\n"% nTeams)
 					outFile.write("%d. %s\n" % (num+1, sortedFixture[0]))
@@ -138,7 +139,7 @@ class Fixtures(object):
 		[self.teamName, self.numPoints, self.numGames,
 		self.numGoals, self.numSuffGoals, self.goalDifference,
 		"%.2f" % self.percentPoints]
-		))
+		))	
 	#calculates the percent points
 	def findPercentPoint(self):
 		temp = 100.00
@@ -154,7 +155,6 @@ class Fixtures(object):
 	def findGoalDiff(self):
 	#def goalDifference(self):
 		return (self.numGoals - self.numSuffGoals)
-
 
 if __name__ == '__main__':
 	main()
