@@ -149,7 +149,7 @@ class Fixtures(object):
 		
 		else: 
 			#number of points divide with number of games played times 3 point
-			temp = 100.00*self.numPoints/(3*self.numGames)
+			temp = self.numPoints * 100.0 /(3*self.numGames)
 			return temp
 
 #Method updates the number of games played, number of goals(Earn, Suffered), 
