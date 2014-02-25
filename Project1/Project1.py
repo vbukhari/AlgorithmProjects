@@ -2,10 +2,8 @@
 #	Analysis of Alforithms: Project 1 
 #
 
-
 import sys
 import os
-
 
 def main():
 	#catch any exception or error reading or writing file or value eror or any unexpected error
@@ -39,10 +37,9 @@ def main():
 					#iterate over to collect name of teams from input file
 					for nTeam in range(nTeams):
 
-						#teamsName.append(inputFile.readline().rstrip().split(' '))
 						line = inputFile.readline().strip()
 						obj = Fixtures(nTeam, line)
-						fixturesDict[line] = obj#.__dict__
+						fixturesDict[line] = obj
 
 					#iterate over to collect all games results from input file
 					for match in range(nGames):
@@ -76,7 +73,6 @@ def main():
 
 					outFile.write('\n')
 
-
 	except IOError as e:
 
 		print "I/O error({0}): {1}".format(e.errno, e.strerror)
@@ -90,14 +86,12 @@ def main():
 		print "Unexptected error:", sys.exc_info()[0]
 		raise
 
-
 	inputFile.close()
 
 #Class fixture for handing all values 
 class Fixtures(object):
 
 	"""docstring for Fixtures"""
-
 
 	def __init__(self, teamPosition, teamName):
 
@@ -189,8 +183,6 @@ def fixtureComparison(x, y):
 	elif(x.teamPosition > y.teamPosition): return 1
 	elif(x.teamPosition < y.teamPosition): return -1
 	else: return 0
-
-
 
 if __name__ == '__main__':
 	
