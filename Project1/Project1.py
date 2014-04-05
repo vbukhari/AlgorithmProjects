@@ -1,5 +1,5 @@
 #	@author: Vasim Bukhari
-#	Analysis of Alforithms: Project 1 
+#	Analysis of Algorithms: Project 1 
 #
 
 import sys
@@ -53,18 +53,16 @@ def main():
 						processGame(fixturesDict[homeT], int(homeG), int(awayG))
 
 
-<<<<<<< HEAD
 					# print teamsDict
 					#sortedFixture = sorted(teamsDict.values(), cmp=Fixtures.number_compare)
 					sortedFixture = sorted(teamsDict, key=attrgetter('numPoints', 'goalDifference', 'numGoals', 'teamPosition'))
 					num=0
-=======
+
 					# print fixturesDict
 					listFixtures = fixturesDict.values()
 					sortedFixture = sorted(listFixtures, cmp = fixtureComparison)
 					#sortedFixture = sorted(fixturesDict, key)
 					
->>>>>>> f387451d687b60c329150ff7da44c0d3e1499465
 					outFile.write("%d\n"% nTeams)
 					outFile.write("%d. %s\n"%(1, sortedFixture[0].toString()))
 					
