@@ -17,12 +17,21 @@ def main():
 			with open('bukhari.txt', 'w') as outFile:
 				#first line in input file state number of mazes
 				nMazes = int(inputFile.readline())
+				print "Number of Mazes: %d"% nMazes
+				outFile.write("%d\n"%nMazes)
+				#iterate over all mazes
 				for aMaze in range(nMazes):
 					#Skip for blank line between every consecutive maze
 					inputFile.readline()
+					outFile.write('\n')
 					#This line determine dimension of the maze
 					nDimension = int(inputFile.readline())
-
+					print "Dimentsion of Maze %d"% nDimension
+					outFile.write("%d\n"%nDimension)
+					#iterate over a Maze
+					for mazeLine in range(nDimension):
+						outFile.write("%s"%inputFile.readline())
+				
 
 	except IOError as e:
 
