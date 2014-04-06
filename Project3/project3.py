@@ -136,8 +136,8 @@ def main():
 					for n in range(len(path)-1):
 						todo = G.edge[path[n]][path[n+1]]
 						outFile.write(todo['dir'] + '-' + str(todo['weight'])+ ' ')
-					outFile.write('\n')
-					outFile.write('\n')
+					outFile.write('\n\n')
+					#outFile.write('\n')
 					# printPath(G, path)
 					# print "\n"
 
