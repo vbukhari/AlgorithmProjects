@@ -133,16 +133,27 @@ def main():
 
 					path = nx.shortest_path(G, (0, 0), (nDimension-1, nDimension-1))
 					
-					printPath(G, path)
-					print
+					for n in range(len(path)-1):
+						todo = G.edge[path[n]][path[n+1]]
+						outFile.write(todo['dir'] + '-' + str(todo['weight'])+ ' ')
+					outFile.write('\n')
+					outFile.write('\n')
+					# printPath(G, path)
+					# print "\n"
+
+					# def printPath(G, path):
+					# 	for n in range(len(path)-1):
+					# 		todo =  G.edge[path[n]][path[n+1]]
+					# 		print todo['dir'] + '-' + str(todo['weight']),
+
 
 	except IOError as e:
 
 		print "I/O error({0}): {1}".format(e.errno, e.strerror)
 
-	# except ValueError:
+	except ValueError:
 
-	# 	print "Could not convert data to an integer."
+		print "Could not convert data to an integer."
 
 	except:
 
@@ -151,11 +162,11 @@ def main():
 
 
 
-class mazeGraph(object):
-	"""docstring for mazeGraph"""
-	def __init__(self, arg):
-		super(mazeGraph, self).__init__()
-		self.arg = arg
+# class mazeGraph(object):
+# 	"""docstring for mazeGraph"""
+# 	def __init__(self, arg):
+# 		super(mazeGraph, self).__init__()
+# 		self.arg = arg
 		
 
 if __name__ == '__main__':
